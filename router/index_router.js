@@ -7,6 +7,7 @@ const router = express.Router({mergeParams : true});
 // const blogUtils = require(process.env.ROOT + '/utils/blog-utils');
 //
 // // sub-routers
+const userRouter = require('./user/user');
 // const playerRouter = require('./player/player');
 // const loginRouter = require('./auth/login');
 // const logoutRouter = require('./auth/logout');
@@ -25,15 +26,16 @@ const router = express.Router({mergeParams : true});
 // ROUTE: home page
 router.get('/', async (req, res) =>{
 
-
     res.render('layout.ejs', {
         title: 'Bus Management System',
         body : 'home_body'
     });
 });
 
+router.use('/user', userRouter)
+
 // setting up sub-routers
-//router.use('/player', playerRouter);
+// router.use('/player', playerRouter);
 // router.use('/login', loginRouter);
 // router.use('/logout', logoutRouter);
 // router.use('/users', userRouter);
