@@ -1,5 +1,70 @@
-<div class="container">
-    <div class="card-xm shadow m-3 p-2">
-        <img src="/images/site_logo.jpg" width="50">
+<div class="container-fluid custom-container">
+    <div class="row no-gutters">
+
+        <div class="col-2">
+            <div class="header-logo">
+                <a href="/book">
+                    <img src="/images/site_logo.jpg" width="80">
+                </a>
+            </div>
+        </div>
+        <!--<div class="col-3">
+            <div class="header-end">
+                <div class="dropdown user-menu">
+
+                    <a onclick="ga('send', 'event', 'Authentication', 'Click', 'Authentication-Sign_In-Click');" class="logged-out-user-menu-btn btn btn-secondary" href="/login">
+                        Sign in
+                    </a>
+                    <div class="login-dropdown" style="display: none; opacity: 0.999961;">
+                        <p class="login-dropdown__title">New user?</p>
+                        <p class="login-dropdown__help-text">Sign up with just one click</p>
+
+                        <div class="login-dropdown__btn-group d-flex justify-content-around align-items-center">
+                            <button class="btn btn-social-facebook d-flex justify-content-start align-items-center " onclick="callFacebookLogin()">
+                                <img src="/static/200/images/icon-fb.png" alt="fb_icon">
+                                <span>Facebook</span>
+                            </button>
+                            <button class="btn btn-social-google d-flex justify-content-start align-items-center" onclick="callGoogleLogin()">
+                                <img src="/static/200/images/icon-google.png" alt="google_icon">
+                                <span>Google</span>
+                            </button>
+                        </div>
+
+                        <p class="login-dropdown__title text-center my-2">Login with Rokomari Account</p>
+
+                        <form id="loginForm" class="login-dropdown__form&#45;&#45;content" action="/logincheck" method="post">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <img src="/static/200/images/icon-email.png" alt="icon_email">
+                                                        </span>
+                                    </div>
+                                    <input id="j_username" name="j_username" class="form-control" data-validation-type="not-blank" placeholder="Email or phone" validation="required" required="required" type="text" value="" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-0">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <img src="/static/200/images/icon-password.png" alt="icon_password">
+                                                        </span>
+                                    </div>
+                                    <input id="j_password" name="j_password" class="form-control" data-validation-type="not-blank" placeholder="Password" validation="required" required="required" type="password" value="" autocomplete="off">
+                                </div>
+                            </div>
+                            <a class="forget-password-link my-1 text-primary" href="/forgotpassword">Forgot Password?</a>
+
+                            <button data-validation-type="form-submit" class="btn btn-block" type="submit">Sign In</button>
+                            <span class="validation-icon"></span>
+                            <p class="validation-text"></p>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>-->
     </div>
 </div>
