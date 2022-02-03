@@ -7,7 +7,8 @@ const router = express.Router({mergeParams : true});
 // const blogUtils = require(process.env.ROOT + '/utils/blog-utils');
 //
 // // sub-routers
-const userRouter = require('./user/user');
+const user_router = require('./user/user');
+const public_router = require('./public/public_router')
 // const playerRouter = require('./player/player');
 // const loginRouter = require('./auth/login');
 // const logoutRouter = require('./auth/logout');
@@ -32,7 +33,8 @@ router.get('/', async (req, res) =>{
     });
 });
 
-router.use('/user', userRouter)
+router.use('/user', user_router)
+router.use('/public', public_router)
 
 // setting up sub-routers
 // router.use('/player', playerRouter);
