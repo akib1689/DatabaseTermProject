@@ -24,6 +24,8 @@ async  function getBusDynamicStatus(id){
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
+
+
 module.exports = {
     getBus,
     getBusDynamicStatus

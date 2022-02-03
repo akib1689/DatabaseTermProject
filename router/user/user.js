@@ -24,6 +24,9 @@ router.get('/create_trip', async (req, res,) => {
     })
 })
 
+
+
+
 router.get('/for_testing', async (req, res)=>{
 
     res.render('layout.ejs',{

@@ -8,63 +8,17 @@
                 </a>
             </div>
         </div>
-        <!--<div class="col-3">
-            <div class="header-end">
-                <div class="dropdown user-menu">
-
-                    <a onclick="ga('send', 'event', 'Authentication', 'Click', 'Authentication-Sign_In-Click');" class="logged-out-user-menu-btn btn btn-secondary" href="/login">
-                        Sign in
-                    </a>
-                    <div class="login-dropdown" style="display: none; opacity: 0.999961;">
-                        <p class="login-dropdown__title">New user?</p>
-                        <p class="login-dropdown__help-text">Sign up with just one click</p>
-
-                        <div class="login-dropdown__btn-group d-flex justify-content-around align-items-center">
-                            <button class="btn btn-social-facebook d-flex justify-content-start align-items-center " onclick="callFacebookLogin()">
-                                <img src="/static/200/images/icon-fb.png" alt="fb_icon">
-                                <span>Facebook</span>
-                            </button>
-                            <button class="btn btn-social-google d-flex justify-content-start align-items-center" onclick="callGoogleLogin()">
-                                <img src="/static/200/images/icon-google.png" alt="google_icon">
-                                <span>Google</span>
-                            </button>
-                        </div>
-
-                        <p class="login-dropdown__title text-center my-2">Login with Rokomari Account</p>
-
-                        <form id="loginForm" class="login-dropdown__form&#45;&#45;content" action="/logincheck" method="post">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <img src="/static/200/images/icon-email.png" alt="icon_email">
-                                                        </span>
-                                    </div>
-                                    <input id="j_username" name="j_username" class="form-control" data-validation-type="not-blank" placeholder="Email or phone" validation="required" required="required" type="text" value="" autocomplete="off">
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-0">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <img src="/static/200/images/icon-password.png" alt="icon_password">
-                                                        </span>
-                                    </div>
-                                    <input id="j_password" name="j_password" class="form-control" data-validation-type="not-blank" placeholder="Password" validation="required" required="required" type="password" value="" autocomplete="off">
-                                </div>
-                            </div>
-                            <a class="forget-password-link my-1 text-primary" href="/forgotpassword">Forgot Password?</a>
-
-                            <button data-validation-type="form-submit" class="btn btn-block" type="submit">Sign In</button>
-                            <span class="validation-icon"></span>
-                            <p class="validation-text"></p>
-                        </form>
-                    </div>
-
-
+        <div class="row mt-5">
+            <div class="col-md-6 m-auto">
+                <div class="card card-body text-center">
+                    <h1><i class="fab fa-node-js fa-3x"></i></h1>
+                    <p>Create an account or login</p>
+                    <a href="/auth/register" class="btn btn-primary btn-block mb-2"
+                    >Register</a
+                    >
+                    <a href="/auth/login" class="btn btn-secondary btn-block">Login</a>
                 </div>
             </div>
-        </div>-->
+        </div>
     </div>
 </div>
