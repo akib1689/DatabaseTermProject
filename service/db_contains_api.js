@@ -32,7 +32,7 @@ async function getAllRoutesByLocation(id) {
 
 async function getAllDestinationByLocation(id) {
     let sql = `
-        SELECT DISTINCT c2.l_id
+        SELECT c2.r_id, c2.l_id
         FROM contains c1 JOIN contains c2
         ON c1.r_id = c2.r_id
         WHERE c1.l_id = :id AND (c1.l_id <> c2.l_id)
