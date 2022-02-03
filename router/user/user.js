@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router({mergeParams : true});
 
 
-const db_api = require('../../service/db_player_api')
+const db_api = require('../../service/db_location_api')
 
 router.get('/', async (req, res) => {
     console.log("received request from user.js")
@@ -21,6 +21,16 @@ router.get('/create_trip', async (req, res,) => {
         title: 'Create trip',
         body: 'user/create_trip_body',
         loc_result : location_result
+    })
+})
+
+router.get('/for_testing', async (req, res)=>{
+
+    res.render('layout.ejs',{
+        title: 'batool_title',
+        body: 'test',
+        x : 'this is a variable',
+        y : 100
     })
 })
 
