@@ -9,6 +9,7 @@ const router = express.Router({mergeParams : true});
 // // sub-routers
 const user_router = require('./user/user');
 const public_router = require('./public/public_router')
+const auth_router = require('./auth/authenticate')
 // const playerRouter = require('./player/player');
 // const loginRouter = require('./auth/login');
 // const logoutRouter = require('./auth/logout');
@@ -35,7 +36,7 @@ router.get('/', async (req, res) =>{
 
 router.use('/user', user_router)
 router.use('/public', public_router)
-
+router.use('/auth', auth_router)
 // setting up sub-routers
 // router.use('/player', playerRouter);
 // router.use('/login', loginRouter);
