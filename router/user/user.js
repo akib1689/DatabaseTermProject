@@ -3,17 +3,17 @@ const express = require('express');
 
 const router = express.Router({mergeParams : true});
 
-const ensureAuth = require('../auth/endureAuth')
+const ensureAuth = require('../auth/ensureAuth')
 
 
 const db_api = require('../../service/db_location_api')
 
-router.get('/',ensureAuth.authenticated, async (req, res) => {
+router.get('/', async (req, res) => {
     console.log("received request from user.js")
     res.send(`<h1>this is a response from user</h1>`)
 });
 
-router.get('/create_trip',ensureAuth.authenticated, async (req, res,) => {
+router.get('/create_trip', async (req, res,) => {
     // get location
     const location_result = await db_api.getAllLocation();
     // console.log(location_result);
