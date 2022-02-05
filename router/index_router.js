@@ -2,7 +2,7 @@
 const express = require('express');
 
 const router = express.Router({mergeParams : true});
-
+const auth = require('./auth/ensureAuth')
 //
 // const blogUtils = require(process.env.ROOT + '/utils/blog-utils');
 //
@@ -10,46 +10,25 @@ const router = express.Router({mergeParams : true});
 const user_router = require('./user/user');
 const public_router = require('./public/public_router')
 const auth_router = require('./auth/authenticate')
-// const playerRouter = require('./player/player');
-// const loginRouter = require('./auth/login');
-// const logoutRouter = require('./auth/logout');
-// const userRouter = require('./users/users.js');
-// const profileRouter = require('./profile/profile');
-// const blogRouter = require('./blog/blog');
-// const countryRouter = require('./country/countryAll');
-// const contestRouter = require('./contest/contest');
-// const problemsRouter = require('./problems/problems');
-// const apiRouter = require('./api/api');
-// const teamsRouter = require('./teams/teams');
-// const aboutRouter = require('./about/about');
-//
-// const rightPanelUtils = require('../utils/rightPanel-utils');
+const admin_router = require('./admin/admin_router')
 
 // ROUTE: home page
 router.get('/', async (req, res) =>{
 
     res.render('layout.ejs', {
         title: 'Bus Management System',
+        header : 'home_header',
         body : 'home_body'
     });
 });
 
-router.use('/user', user_router)
+// setting up sub-routers
+// all the user routes needs to be authenticated
+router.use('/user', auth.authenticated, user_router)
+router.use('/admin', admin_router)
 router.use('/public', public_router)
 router.use('/auth', auth_router)
-// setting up sub-routers
-// router.use('/player', playerRouter);
-// router.use('/login', loginRouter);
-// router.use('/logout', logoutRouter);
-// router.use('/users', userRouter);
-// router.use('/profile', profileRouter);
-// router.use('/blog', blogRouter);
-// router.use('/country', countryRouter);
-// router.use('/contest', contestRouter);
-// router.use('/api', apiRouter);
-// router.use('/problems', problemsRouter);
-// router.use('/team', teamsRouter);
-// router.use('/about', aboutRouter);
+
 
 
 module.exports = router
