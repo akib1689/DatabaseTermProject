@@ -8,18 +8,17 @@ const router = express.Router({mergeParams: true});
 const dp_person_api = require('../../service/db_person_api')
 
 router.get('/login', (req, res) => {
-
     res.render('layout.ejs', {
         title: 'Login',
         body: 'auth/login',
-        partials: 'partials/messages'
+        partials: '../partials/messages'
     });
 })
 router.get('/register', (req, res) => {
     res.render('layout.ejs', {
         title: 'Register',
         body: 'auth/register',
-        partials: 'partials/messages'
+        partials: '../partials/messages'
     });
 })
 
@@ -59,7 +58,7 @@ router.post('/register', async (req, res) => {
         res.render('layout.ejs', {
             title: 'Register',
             body: 'auth/register',
-            partials: 'partials/messages',
+            partials: '../partials/messages',
             errors,
             name,
             email: phoneNumber,
@@ -82,7 +81,7 @@ router.post('/register', async (req, res) => {
             res.render('layout.ejs', {
                 title: 'Register',
                 body: 'auth/register',
-                partials: 'partials/messages',
+                partials: '../partials/messages',
                 errors,
                 name,
                 email: phoneNumber,
@@ -100,14 +99,23 @@ router.post('/register', async (req, res) => {
                 req.flash('success_msg', 'Registered user! Login to view the page')
                 res.redirect('/auth/login')
             } else {
-                res.send('some error occurred')
+                errors.push({
+                    message : 'Some internal server error occurred'
+                })
+                res.render('layout.ejs', {
+                    title: 'Register',
+                    body: 'auth/register',
+                    partials: '../partials/messages',
+                    errors,
+                    name,
+                    email: phoneNumber,
+                    password,
+                    password2
+                })
             }
 
         }
-
     }
-
-
 })
 
 router.post('/login', (req, res, next) => {

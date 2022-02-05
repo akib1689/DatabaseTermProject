@@ -3,8 +3,6 @@ const express = require('express');
 
 const router = express.Router({mergeParams : true});
 
-const ensureAuth = require('../auth/ensureAuth')
-
 
 const db_api = require('../../service/db_location_api')
 
