@@ -29,6 +29,4 @@ router.use('/admin', admin_router)
 router.use('/public', public_router)
 router.use('/auth', auth_router)
 
-
-
 module.exports = router

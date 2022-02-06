@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "git": "git add -A && git status && git commit -m"
   },
   "author": "akibur rahman & zarin tasnim batool",
   "license": "ISC",
