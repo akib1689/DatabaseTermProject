@@ -31,7 +31,7 @@ router.get('/:id', async (req, res) => {
     res.send(result);
 })
 
-router.get('/route/:id', async (req, res) => {
+router.get('/:id/route', async (req, res) => {
     const query_result = await db_contains_api.getAllRoutesByLocation(req.params.id);
 
     const result = {
@@ -40,7 +40,7 @@ router.get('/route/:id', async (req, res) => {
     res.send(result);
 })
 
-router.get('/destination/:id', async (req, res) => {
+router.get('/:id/destination', async (req, res) => {
     const query_result = await db_contains_api.getAllDestinationByLocation(req.params.id);
     const result = {
         data: query_result
