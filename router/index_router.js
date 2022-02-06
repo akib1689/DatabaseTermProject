@@ -22,11 +22,14 @@ router.get('/', async (req, res) =>{
     });
 });
 
+
 // setting up sub-routers
 // all the user routes needs to be authenticated
 router.use('/user', auth.authenticated, user_router)
 router.use('/admin', admin_router)
 router.use('/public', public_router)
 router.use('/auth', auth_router)
+
+
 
 module.exports = router
