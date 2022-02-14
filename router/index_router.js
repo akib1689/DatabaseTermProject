@@ -18,7 +18,9 @@ router.get('/', async (req, res) =>{
     res.render('layout.ejs', {
         title: 'Bus Management System',
         header : 'home_header',
-        body : 'home_body'
+        body : 'home_body',
+        cssFileLink: '/assets/css/style.css',
+        scripts: '/assets/js/main.js'
     });
 });
 

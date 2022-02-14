@@ -27,7 +27,36 @@ async function getRouteById(id){
     return (await database.execute(sql, binds,database.options)).rows;
 }
 
+async function getRouteByName(name){
+    let sql = `
+        SELECT 
+            *
+        FROM
+            Route
+        WHERE
+            NAME = :NAME
+    `;
+    let binds = {
+        NAME : name
+    };
+
+    return (await database.execute(sql, binds,database.options)).rows;
+}
+
+
+async function insertRoute(name){
+    let sql = `
+        INSERT INTO ROUTE (NAME) VALUES (:NAME)
+    `;
+    let binds = {
+        NAME : name
+    };
+
+    return (await database.execute(sql, binds,database.options));
+}
 module.exports = {
     getAllRoute,
-    getRouteById
+    getRouteById,
+    getRouteByName,
+    insertRoute
 }

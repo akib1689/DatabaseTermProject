@@ -3,7 +3,7 @@
         <div class="card card-body">
             <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>Create Location</h1>
             <% if (typeof (partials) != 'undefined') { %>
-                <%-include(partials)%>
+                <%- include(partials) %>
             <% } %>
             <form action="/admin/create_location" method="POST">
                 <div class="form-group">
@@ -16,9 +16,9 @@
                             placeholder="Enter the name of the location"
                     />
                 </div>
-                <div class="pull-right">
-                    <button class="btn-info btn">create Location</button>
-                </div>
+
+                <button class="btn-info btn right-aligned-btn">create Location</button>
+
             </form>
         </div>
     </div>
