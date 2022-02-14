@@ -1,0 +1,49 @@
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i><%= title %></h1>
+            <div id="partial">
+                <% if (typeof (partials) != 'undefined') { %>
+                    <%- include(partials) %>
+                <% } %>
+            </div>
+            <form action=<%= formPostUrl %> method="POST">
+                <div class="form-group">
+                    <label for="param_name">
+                        <% if (title === 'Create Location'){ %>
+                            Create Location
+                        <% } else if (title === 'Create Route') { %>
+                            Create Route
+                        <% } %>
+                    </label>
+                    <input
+                            type="text"
+                            id="param_name"
+                            name="param"
+                            class="form-control"
+                            placeholder="Enter the parameter to insert"
+                    />
+                </div>
+                <div>
+                    <label for="search-box">Location</label>
+                    <br>
+                    <input
+                            type="search"
+                            width="auto"
+                            list="search-option"
+                            id="search-box"
+                            placeholder="Enter name of the location to add to route">
+                    <datalist id="search-option">
+
+                    </datalist>
+                    <button type="button" id="add-route-btn"> Add to route</button>
+                </div>
+                <div>
+                    <table class="table" id="table">
+                    </table>
+                </div>
+                <button class="btn-info btn right-aligned-btn">create Route</button>
+            </form>
+        </div>
+    </div>
+</div>

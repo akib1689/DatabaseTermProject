@@ -41,6 +41,22 @@ async function getLocationByName(name) {
 
     return (await database.execute(sql, binds,database.options)).rows;
 }
+
+
+
+async function getLocationByPattern(pattern){
+    let sql = `
+        SELECT *
+        FROM LOCATION
+        WHERE
+            NAME LIKE :loc_pattern
+    `;
+    let binds = {
+        loc_pattern : pattern
+    };
+
+    return (await database.execute(sql, binds,database.options)).rows;
+}
 async function insertLocation(name){
     let sql = `
         INSERT INTO LOCATION (NAME) VALUES (:NAME)
@@ -51,9 +67,11 @@ async function insertLocation(name){
 
     return (await database.execute(sql, binds,database.options));
 }
+
 module.exports = {
     getAllLocation,
     getLocationById,
     getLocationByName,
+    getLocationByPattern,
     insertLocation
 }

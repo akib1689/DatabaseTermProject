@@ -3,7 +3,6 @@ const express = require('express');
 
 const router = express.Router({mergeParams : true});
 
-
 const db_api = require('../../service/db_location_api')
 
 router.get('/', async (req, res) => {

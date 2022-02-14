@@ -7,12 +7,23 @@ const db_loc_api = require('../../service/db_location_api')
 const db_contains_api = require('../../service/db_contains_api')
 
 router.get('/', async (req, res) => {
+    if (req.query.search){
+        // query present
+        let search = req.query.search;
+        search = '%' + search + '%'
+        const loc_result = await db_loc_api.getLocationByPattern(search);
+        const result = {
+            data : loc_result
+        }
+        return res.send(result);
+    }
     const loc_result = await db_loc_api.getAllLocation();
     const result  = {
         data : loc_result
     }
     res.send(result);
 })
+
 router.get('/:id', async (req, res) => {
     const query_result = await db_loc_api.getLocationById(req.params.id);
     console.log(query_result.length)
