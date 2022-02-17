@@ -5,9 +5,9 @@
                 <i class="fas fa-user-plus"></i> Register
             </h1>
             <% if (typeof (partials) != 'undefined') { %>
-                <%-include(partials)%>
+                <%- include(partials) %>
             <% } %>
-            <form action="/auth/register" method="POST">
+            <form action=<%= formPostUrl %> method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input
@@ -52,6 +52,19 @@
                             value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
                     />
                 </div>
+                <% if (formPostUrl === '/auth/register_company') { %>
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input
+                                type="text"
+                                id="company"
+                                name="company"
+                                class="form-control"
+                                placeholder="Enter Company Name!"
+                                value="<%= typeof company != 'undefined' ? company : '' %>"
+                        />
+                    </div>
+                <% } %>
                 <button type="submit" class="btn btn-primary btn-block">
                     Register
                 </button>

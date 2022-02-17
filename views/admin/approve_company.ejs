@@ -1,0 +1,35 @@
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i><%= title %></h1>
+            <div id="partial">
+                <% if (typeof (partials) != 'undefined') { %>
+                    <%- include(partials) %>
+                <% } %>
+            </div>
+            <form action=<%= formPostUrl %> method="POST">
+                <div class="form-group">
+                    <label for="param_name">
+                        Company Approval
+                    </label>
+                    <input
+                            type="search"
+                            list="search-option"
+                            id="param_name"
+                            name="param"
+                            class="form-control"
+                            placeholder="Enter the parameter to insert"
+                    />
+                    <datalist id="search-option">
+                        <% if (typeof companies != 'undefined') { %>
+                            <% companies.forEach(function (company) { %>
+                                <option value=<%=company.ID%>><%=company.NAME%></option>
+                            <%});%>
+                        <%}%>
+                    </datalist>
+                </div>
+                <button class="btn-info btn right-aligned-btn">Approve Company</button>
+            </form>
+        </div>
+    </div>
+</div>

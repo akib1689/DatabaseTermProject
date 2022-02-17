@@ -14,7 +14,21 @@ async  function getFare(src, des, route){
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
+async function insertFare(r_id, l1_id, l2_id, fare){
+    let sql = `
+        INSERT INTO FARE (R_ID, L1_ID, L2_ID, FARE) VALUES (:R_ID, :L1_ID, :L2_ID, :FARE)
+    `;
+    let binds = {
+        R_ID : r_id,
+        L1_ID : l1_id,
+        L2_ID : l2_id,
+        FARE : fare
+    };
+
+    return (await database.execute(sql, binds,database.options));
+}
 
 module.exports = {
-    getFare
+    getFare,
+    insertFare
 }
