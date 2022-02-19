@@ -50,29 +50,12 @@ async function insertUser(name, phoneNumber, password){
     return (await database.execute(sql, binds,database.options));
 }
 
-async function insertAdmin(name, phoneNumber, password){
-    let sql = `
-       INSERT INTO PERSON (NAME, PHONE_NUMBER, PASSWORD, ROLE)
-       VALUES(:NAME, :PHONE_NUMBER, :PASSWORD, :ROLE)
-    `;
-    const role = 'admin';
-    let binds = {
-        NAME : name,
-        PHONE_NUMBER : phoneNumber,
-        PASSWORD : password,
-        ROLE : role
-    };
-
-    return (await database.execute(sql, binds,database.options));
-}
-
-async function insertCompanyOwner(name, phoneNumber, password){
+async function insertUserWithRole(name, phoneNumber, password, role){
     let sql = `
        INSERT INTO PERSON (NAME, PHONE_NUMBER, PASSWORD, ROLE)
        VALUES(:NAME, :PHONE_NUMBER, :PASSWORD, :ROLE)
        RETURNING ID INTO :p_id
     `;
-    const role = 'owner';
     let binds = {
         NAME : name,
         PHONE_NUMBER : phoneNumber,
@@ -88,10 +71,11 @@ async function insertCompanyOwner(name, phoneNumber, password){
     return (await database.execute(sql, binds,database.options)).outBinds;
 }
 
+
+
 module.exports = {
     findUserByPhone,
     findUserById,
     insertUser,
-    insertAdmin,
-    insertCompanyOwner
+    insertUserWithRole
 }

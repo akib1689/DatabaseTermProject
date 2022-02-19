@@ -65,6 +65,19 @@
                         />
                     </div>
                 <% } %>
+                <% if (formPostUrl === '/auth/register_driver') { %>
+                    <div class="form-group">
+                        <label for="licence">Driving licence Number</label>
+                        <input
+                                type="text"
+                                id="licence"
+                                name="licence"
+                                class="form-control"
+                                placeholder="Enter driving licence number!"
+                                value="<%= typeof licence != 'undefined' ? licence : '' %>"
+                        />
+                    </div>
+                <% } %>
                 <button type="submit" class="btn btn-primary btn-block">
                     Register
                 </button>
