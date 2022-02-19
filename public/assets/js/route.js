@@ -71,7 +71,7 @@ add_btn.addEventListener('click', () => {
             for (let i = 0; i < route_loc.length; i++) {
                 let curr_loc = route_loc[i];
                 tableHtml += `<td>${curr_loc.NAME}</td>`;
-                listHtml += `<li> <input type="number" name="loc_id" value="${curr_loc.ID}">`
+                listHtml += `<li> <input type="number" name="loc_id" value="${curr_loc.ID}"></li>`
             }
             route_list.innerHTML = listHtml
             tableHtml +='</tr>'

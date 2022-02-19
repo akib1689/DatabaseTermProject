@@ -1,3 +1,101 @@
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+    background-color: #fff;
+    color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+h2 {
+    color: #000;
+    font-weight: 600;
+}
+
+h4 {
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 2;
+}
+
+h5 {
+    color: #626262;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+a {
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: #71c55d;
+}
+a:hover {
+    color: #92d283;
+}
+
+ul {
+    letter-spacing: 1px;
+}
+
+li {
+    color: #626262;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    line-height: 30px;
+    text-transform: capitalize;
+}
+
+p {
+    color: #505050;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    line-height: 2;
+    margin-bottom: 20px;
+}
+
+span {
+    letter-spacing: 1px;
+}
+
+label {
+    margin: 10px;
+}
+
+.right-aligned-btn{
+    float: right;
+}
+
+.container-full {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.btn {
+    border: 1px solid #fff;
+    border-radius: 50px;
+    color: #fff;
+    margin: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 15px 40px;
+    text-transform: uppercase;
+    transition: all 0.5s ease-in-out 0s;
+}
+
+.btn-default:hover {
+    color: #fff;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
 .table-cell {
     width: 50%;
 }
