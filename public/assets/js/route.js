@@ -32,7 +32,6 @@ search_box.addEventListener('input', () => {
 
 add_btn.addEventListener('click', () => {
     let str = search_box.value;
-    const available = document.getElementsByClassName('location')
 
     let matched = null;
     for (let i = 0; i < loc_data.length; i++) {
@@ -65,15 +64,26 @@ add_btn.addEventListener('click', () => {
         </div>`;
         }else {
             route_loc.push(matched)
+            const route_list = document.getElementById('route-list')
             let tableHtml = ''
+            tableHtml += '<tr><td></td>'
+            let listHtml = '';
             for (let i = 0; i < route_loc.length; i++) {
-                tableHtml += '<tr>'
-                tableHtml += '<td>' + route_loc[i].NAME + '</td>'
+                let curr_loc = route_loc[i];
+                tableHtml += `<td>${curr_loc.NAME}</td>`;
+                listHtml += `<li> <input type="number" name="loc_id" value="${curr_loc.ID}"></li>`
+            }
+            route_list.innerHTML = listHtml
+            tableHtml +='</tr>'
+            for (let i = 0; i < route_loc.length; i++) {
+                let curr_loc = route_loc[i];
+                tableHtml += '<tr>';
+                tableHtml += '<td>' + curr_loc.NAME+ '</td>';
                 for (let j = 0; j < route_loc.length; j++) {
                     if (i>j){
-                        tableHtml += '<td contenteditable="true">10</td>'
+                        tableHtml += `<td><input class="table-cell" type="number" name="fares" value="10"></td>`;
                     }else {
-                        tableHtml += '<td contenteditable="false">N/A</td>'
+                        tableHtml += `<td>N/A</td>`
                     }
                 }
                 tableHtml += '</tr>'

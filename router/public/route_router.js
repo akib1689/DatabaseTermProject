@@ -6,6 +6,7 @@ const router = express.Router({mergeParams : true});
 const db_route_api = require('../../service/db_route_api')
 const db_contains_api = require('../../service/db_contains_api')
 const db_operates_api = require('../../service/db_operates_api')
+const db_fare_api = require('../../service/db_fare_api')
 
 router.get('/',async (req, res) => {
     const query_result = await db_route_api.getAllRoute();
@@ -63,6 +64,13 @@ router.get('/:id/bus' , async(req, res)=>{
     }
 
 } )
+router.get('/:id/fare', async (req, res)=>{
 
+    const query_result = await db_fare_api.getRouteFare(req.params.id);
+    const result = {
+        data: query_result
+    }
+    res.send(result);
+})
 
 module.exports = router;

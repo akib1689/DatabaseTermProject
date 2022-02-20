@@ -43,8 +43,21 @@ async function getAllDestinationByLocation(id) {
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
+async function insertInContains(r_id, l_id){
+    let sql = `
+        INSERT INTO CONTAINS (R_ID, L_ID) VALUES (:R_ID, :L_ID)
+    `;
+    let binds = {
+        R_ID : r_id,
+        L_ID : l_id
+    };
+
+    return (await database.execute(sql, binds,database.options));
+}
+
 module.exports = {
     getAllLocationByRoute,
     getAllRoutesByLocation,
-    getAllDestinationByLocation
+    getAllDestinationByLocation,
+    insertInContains
 }

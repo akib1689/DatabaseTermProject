@@ -7,6 +7,16 @@ function authenticated (req, res, next) {
     res.redirect('/auth/login');
 }
 
+function authenticateAdmin (req, res, next){
+    if (req.isAuthenticated() && req.user.ROLE === 'admin'){
+        return next();
+    }
+
+    req.flash('error_msg', 'The resource is only available to system admin');
+    res.redirect('/auth/login');
+}
+
 module.exports = {
-    authenticated
+    authenticated,
+    authenticateAdmin
 }
