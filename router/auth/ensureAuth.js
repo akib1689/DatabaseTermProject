@@ -1,4 +1,4 @@
-function authenticated (req, res, next) {
+function authenticateUser (req, res, next) {
     if (req.isAuthenticated()){
         return next();
     }
@@ -16,7 +16,29 @@ function authenticateAdmin (req, res, next){
     res.redirect('/auth/login');
 }
 
+function authenticateCompanyAdmin (req, res, next){
+    if (req.isAuthenticated() && req.user.ROLE === 'owner'){
+        return next();
+    }
+
+    req.flash('error_msg', 'The resource is only available to company admin');
+    res.redirect('/auth/login');
+}
+
+function authenticateDriver (req, res, next){
+    if (req.isAuthenticated() && req.user.ROLE === 'driver'){
+        return next();
+    }
+
+    req.flash('error_msg', 'The resource is only available to company admin');
+    res.redirect('/auth/login');
+}
+
+
+
 module.exports = {
-    authenticated,
-    authenticateAdmin
+    authenticateUser,
+    authenticateAdmin,
+    authenticateDriver,
+    authenticateCompanyAdmin
 }
