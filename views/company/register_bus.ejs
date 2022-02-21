@@ -1,0 +1,33 @@
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>Add Company Bus</h1>
+            <% if (typeof (partials) != 'undefined') { %>
+                <%- include(partials) %>
+            <% } %>
+            <form action=<%=formPostUrl%> method="POST">
+                <div class="form-group">
+                    <label for="reg_number">Licence Plate Number</label>
+                    <input
+                            type="text"
+                            id="reg_number"
+                            name="param"
+                            class="form-control"
+                            placeholder="Enter Licence plate number"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="capacity">Capacity of Bus</label>
+                    <input
+                            type="number"
+                            id="capacity"
+                            name="capacity"
+                            class="form-control"
+                            placeholder="Enter capacity"
+                    />
+                </div>
+                <button class="btn-info btn right-aligned-btn">Add bus</button>
+            </form>
+        </div>
+    </div>
+</div>

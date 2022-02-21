@@ -26,9 +26,23 @@ async  function getBusInDate(route, date){
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
+async function insertOperation(bus_id, route_id , operation_date, offset){
+    let sql = `
+        INSERT INTO OPERATES(B_ID, R_ID, OPERATE_DATE) 
+        VALUES (:B_ID, :R_ID, TO_DATE(:OPERATE_DATE, 'YYYY-MM-DD')+ :OFFSET)
+    `;
+    let binds = {
+        B_ID : bus_id,
+        R_ID : route_id,
+        OPERATE_DATE : operation_date,
+        OFFSET: offset
+    };
 
+    return (await database.execute(sql, binds,database.options));
+}
 
 module.exports = {
     getBusInRoute,
-    getBusInDate
+    getBusInDate,
+    insertOperation
 }
