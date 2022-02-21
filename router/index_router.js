@@ -37,6 +37,9 @@ router.get('/redirecting', ((req, res) => {
     }else if (req.user.ROLE === 'owner'){
         req.flash('success_msg', 'Successfully Logged in as Company Admin')
         res.redirect('/company')
+    }else if (req.user.ROLE === 'driver'){
+        req.flash('success_msg', 'Successfully Logged in as Driver')
+        res.redirect('/driver')
     }
 }))
 
