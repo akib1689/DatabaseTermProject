@@ -3,10 +3,10 @@ const express = require('express');
 
 const router = express.Router({mergeParams: true});
 
-const db_owner_api = require('../../service/db_owner-api');
+
 const db_bus_api = require('../../service/db_bus_api');
-const db_route_api = require('../../service/db_route_api');
 const db_driver_api = require('../../service/db_driver_api')
+const db_requested_api = require('../../service/db_requested_api')
 
 //utils
 const time = require("../../utils/time");
@@ -65,7 +65,7 @@ router.post('/req_bus', async (req, res) =>{
 
         const date = time.get_date();
         for (let i = 0; i < num_days; i++) {
-            const insert_result = await db_driver_api.insertRequest(bus_id,driver_id, date, i);
+            const insert_result = await db_requested_api.insertRequest(bus_id,driver_id, date, i);
             if (!insert_result || insert_result.rowsAffected <= 0){
                 req.flash('error_msg', 'The bus is already assigned driver in the following date')
                 res.redirect('/driver')
@@ -78,6 +78,46 @@ router.post('/req_bus', async (req, res) =>{
         res.redirect('/driver')
     }
 });
+router.get('/bus_position', async (req, res)=>{
+    const busses = await db_driver_api.getBusByUser(req.user.ID);
+    res.render('layout.ejs', {
+        title: 'Update bus Location',
+        body: 'driver/update_bus_loc',
+        partials: '../partials/messages',
+        formPostUrl: '/driver/bus_position',
+        cssFileLink: '/assets/css/create_route_style.css',
+        busses
+    });
+})
+
+router.post('/bus_position', async (req, res)=>{
+    const busses = await db_driver_api.getBusByUser(req.user.ID);
+    console.log(req.body)
+    const {bus_id, x_coordinate, y_coordinate} = req.body;
+    let errors = [];
+    if (!bus_id || !x_coordinate || !y_coordinate){
+        errors.push({
+            message : 'Please fill the form'
+        })
+    }
+    if (busses.ID !== bus_id){
+        errors.push({
+            message : 'You don\'t have the permission to edit the location of the following bus'
+        })
+    }
+    if (errors.length > 0){
+        res.render('layout.ejs', {
+            title: 'Update bus Location',
+            body: 'driver/update_bus_loc',
+            partials: '../partials/messages',
+            formPostUrl: '/driver/bus_position',
+            cssFileLink: '/assets/css/create_route_style.css',
+            busses
+        });
+    }else{
+
+    }
+})
 
 
 module.exports = router;

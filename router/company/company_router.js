@@ -7,6 +7,7 @@ const db_owner_api = require('../../service/db_owner-api');
 const db_bus_api = require('../../service/db_bus_api');
 const db_route_api = require('../../service/db_route_api');
 const db_operates_api = require('../../service/db_operates_api');
+const db_requested_api = require('../../service/db_requested_api')
 
 //utils
 const time = require('../../utils/time')
@@ -157,4 +158,26 @@ router.post('/schedule_bus', async (req, res) => {
 
 })
 
+router.get('/approve_driver', async (req, res) =>{
+    const user_company = await db_owner_api.getCompany(req.user.ID);
+    if (user_company.length > 0) {
+        const buses = await db_requested_api.getRequested(user_company[0].C_ID)
+        console.log(buses.length);
+        res.render('layout.ejs', {
+            title: 'Approve Driver',
+            body: 'company/approve_driver',
+            partials: '../partials/messages',
+            formPostUrl: '/company/approve_driver',
+            cssFileLink: '/assets/css/create_route_style.css',
+            scripts: '/assets/js/approve_driver.js',
+            buses
+        })
+
+    } else {
+        // some error occurred the user is not a company admin
+        req.flash('error_msg', 'Couldn\'t create the schedule bus at this moment! Try again later');
+        res.redirect('/company');
+    }
+
+})
 module.exports = router;
