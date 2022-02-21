@@ -1,0 +1,48 @@
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>Request Bus</h1>
+            <% if (typeof (partials) != 'undefined') { %>
+                <%- include(partials) %>
+            <% } %>
+            <form action=<%=formPostUrl%> method="POST">
+                <div class="form-group">
+                    <label for="bus_id">
+                        Bus ID
+                    </label>
+                    <input
+                            type="search"
+                            list="bus-search"
+                            id="bus_id"
+                            name="bus_id"
+                            class="form-control"
+                            placeholder="Enter the Bus ID"
+                    />
+                    <datalist id="bus-search">
+                        <% if (typeof buses != 'undefined') { %>
+                            <% buses.forEach(function (bus) { %>
+                            <option value=<%=bus.ID%>><%=bus.LICENCE_PLATE_NUMBER%>, income= <%= bus.EXPECTED_INCOME%></option>
+                            <%});%>
+                        <%}%>
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label for="num-days">
+                        Days of operation
+                    </label>
+                    <input
+                            type="number"
+                            id="num-days"
+                            name="num_days"
+                            class="form-control"
+                            value="1"
+                            min="1"
+                            max="7"
+                            placeholder="Enter operating date"
+                    />
+                </div>
+                <button class="btn-info btn right-aligned-btn">Request bus</button>
+            </form>
+        </div>
+    </div>
+</div>

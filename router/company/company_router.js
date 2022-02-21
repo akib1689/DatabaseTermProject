@@ -2,11 +2,14 @@
 const express = require('express');
 
 const router = express.Router({mergeParams: true});
-
+// db class
 const db_owner_api = require('../../service/db_owner-api');
 const db_bus_api = require('../../service/db_bus_api');
 const db_route_api = require('../../service/db_route_api');
 const db_operates_api = require('../../service/db_operates_api');
+
+//utils
+const time = require('../../utils/time')
 
 router.get('/', async (req, res) => {
     res.render('layout.ejs', {
@@ -77,7 +80,7 @@ router.get('/schedule_bus', async (req, res) => {
     if (user_company.length > 0) {
         const company_bus = await db_bus_api.getCompanyBus(user_company[0].C_ID);
         const routes = await db_route_api.getAllRoute();
-        let timeString = get_time();
+        let timeString = time.get_date();
 
         res.render('layout.ejs', {
             title: 'Add bus',
@@ -102,7 +105,7 @@ router.post('/schedule_bus', async (req, res) => {
     if (user_company.length > 0) {
         const company_bus = await db_bus_api.getCompanyBus(user_company[0].C_ID);
         const routes = await db_route_api.getAllRoute();
-        let timeString = get_time();
+        let timeString = time.get_date();
 
         let errors = [];
         const {bus_id, route_id, operation_date, num_days} = req.body;
@@ -145,7 +148,6 @@ router.post('/schedule_bus', async (req, res) => {
             req.flash('success_msg', msg)
             res.redirect('/company')
 
-
         }
     } else {
         // some error occurred the user is not a company admin
@@ -154,20 +156,5 @@ router.post('/schedule_bus', async (req, res) => {
     }
 
 })
-
-
-function get_time() {
-    let now = new Date();
-    let year = now.getFullYear();
-    let month = now.getMonth() + 1;
-    let date = now.getDate() + 1;
-    if (month.toString().length === 1) {
-        month = '0' + month;
-    }
-    if (date.toString().length === 1) {
-        date = '0' + date;
-    }
-    return year + '-' + month + '-' + date;
-}
 
 module.exports = router;
