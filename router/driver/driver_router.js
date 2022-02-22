@@ -15,7 +15,9 @@ router.get('/', async (req, res) => {
     res.render('layout.ejs', {
         title: 'Driver Home',
         body: 'driver/driver_home',
-        partials: '../partials/messages'
+        partials: '../partials/messages',
+        footer: 'footer',
+        cssFileLink: '/assets/css/create_route_style.css'
     });
 })
 
@@ -26,6 +28,7 @@ router.get('/req_bus', async (req, res) =>{
         body: 'driver/req_bus',
         partials: '../partials/messages',
         formPostUrl: '/driver/req_bus',
+        footer: 'footer',
         cssFileLink: '/assets/css/create_route_style.css',
         buses : bus_not_assigned
     });
@@ -56,6 +59,7 @@ router.post('/req_bus', async (req, res) =>{
             body: 'driver/req_bus',
             partials: '../partials/messages',
             formPostUrl: '/driver/req_bus',
+            footer: 'footer',
             cssFileLink: '/assets/css/create_route_style.css',
             buses : bus_not_assigned,
             errors
@@ -85,6 +89,7 @@ router.get('/bus_position', async (req, res)=>{
         body: 'driver/update_bus_loc',
         partials: '../partials/messages',
         formPostUrl: '/driver/bus_position',
+        footer: 'footer',
         cssFileLink: '/assets/css/create_route_style.css',
         busses
     });
@@ -118,6 +123,7 @@ router.post('/bus_position', async (req, res)=>{
             body: 'driver/update_bus_loc',
             partials: '../partials/messages',
             formPostUrl: '/driver/bus_position',
+            footer: 'footer',
             cssFileLink: '/assets/css/create_route_style.css',
             busses,
             errors

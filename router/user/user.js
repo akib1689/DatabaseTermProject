@@ -10,7 +10,9 @@ router.get('/', async (req, res) => {
     res.render('layout.ejs', {
         title: 'User Home',
         body: 'user/user_home',
-        partials: '../partials/messages'
+        footer: 'footer',
+        partials: '../partials/messages',
+        cssFileLink: '/assets/css/create_route_style.css'
     });
 });
 
@@ -19,6 +21,7 @@ router.get('/create_trip', async (req, res,) => {
     res.render('layout.ejs', {
         title: 'Create trip',
         body: 'user/create_trip_body',
+        footer: 'footer',
         formPostUrl: '/user/create_trip',
         scripts: '/assets/js/create_trip.js',
         cssFileLink: '/assets/css/create_route_style.css'
@@ -49,6 +52,7 @@ router.post('/create_trip', async (req, res,) => {
             body: 'user/create_trip_body',
             formPostUrl: '/user/create_trip',
             scripts: '/assets/js/create_trip.js',
+            footer: 'footer',
             cssFileLink: '/assets/css/create_route_style.css',
             errors
         })
@@ -90,6 +94,7 @@ router.get('/end_trip', async (req, res) => {
     res.render('layout.ejs', {
         title: 'End trip',
         body: 'user/end_trip',
+        footer: 'footer',
         formPostUrl: '/user/end_trip',
         cssFileLink: '/assets/css/create_route_style.css',
         trips: running_trip
@@ -123,6 +128,7 @@ router.get('/rate_last', async (req, res) => {
         title: 'Rate trip',
         body: 'user/rate_last',
         formPostUrl: '/user/rate_last',
+        footer: 'footer',
         cssFileLink: '/assets/css/rating.css',
         trips: finished_trip
     })
@@ -149,6 +155,7 @@ router.post('/rate_last', async (req, res) => {
             body: 'user/rate_last',
             partials: '../partials/messages',
             formPostUrl: '/user/rate_last',
+            footer: 'footer',
             cssFileLink: '/assets/css/rating.css',
             trips: finished_trip,
             errors
