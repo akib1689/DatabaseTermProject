@@ -100,7 +100,14 @@ router.post('/bus_position', async (req, res)=>{
             message : 'Please fill the form'
         })
     }
-    if (busses.ID !== bus_id){
+
+    if (isNaN(bus_id) || isNaN(x_coordinate) || isNaN(y_coordinate)){
+        errors.push({
+            message:'Bus ID, Latitude & Longitude must be number'
+        })
+    }
+
+    if (busses[0].B_ID != bus_id){
         errors.push({
             message : 'You don\'t have the permission to edit the location of the following bus'
         })
@@ -112,10 +119,19 @@ router.post('/bus_position', async (req, res)=>{
             partials: '../partials/messages',
             formPostUrl: '/driver/bus_position',
             cssFileLink: '/assets/css/create_route_style.css',
-            busses
+            busses,
+            errors
         });
     }else{
+        const update_result = await db_bus_api.updateBusStatus(bus_id, x_coordinate,y_coordinate);
+        if (update_result && update_result.rowsAffected > 0){
+            req.flash('success_msg', 'Changed the bus location');
+            res.redirect('/driver');
+            return;
+        }
 
+        req.flash('error_msg', 'Couldn\'t update the location of the bus. Try again later');
+        res.redirect('/driver');
     }
 })
 
