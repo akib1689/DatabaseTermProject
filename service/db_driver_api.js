@@ -1,29 +1,5 @@
 const database = require('./database')
-const oracledb = require("oracledb");
 
-async  function getBus(id){
-    let sql = `
-        SELECT * 
-        FROM BUS
-        WHERE  ID = :id
-    `;
-    let binds = {
-        id : id
-    };
-    return (await database.execute(sql, binds, database.options)).rows;
-}
-
-async  function getBusDynamicStatus(id){
-    let sql = `
-        SELECT * 
-        FROM BUS_DYNAMIC_STATUS
-        WHERE  B_ID = :id
-    `;
-    let binds = {
-        id : id
-    };
-    return (await database.execute(sql, binds, database.options)).rows;
-}
 
 async function getBusByUser(driver_id){
     let sql = `
@@ -65,8 +41,24 @@ async function insertDrives(bus_id, driver_id, operation_date){
     return (await database.execute(sql, binds,database.options));
 }
 
+async function rateDriver(driver_id, rating){
+    let sql = `
+        UPDATE DRIVER
+        SET RATING = (NVL(RATING, 0) * NVL(NUM_REVIEWS, 0) + :RATING) / (NVL(NUM_REVIEWS, 0)+1),
+            NUM_REVIEWS =  NVL(num_reviews, 0) + 1
+        WHERE P_ID = :DRIVER_ID
+    `;
+    let binds = {
+        DRIVER_ID: driver_id,
+        RATING: rating
+    };
+
+    return (await database.execute(sql, binds,database.options));
+}
+
 module.exports = {
     insertDriver,
     insertDrives,
-    getBusByUser
+    getBusByUser,
+    rateDriver
 }

@@ -1,0 +1,40 @@
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>Last trip</h1>
+            <% if (typeof (partials) != 'undefined') { %>
+                <%- include(partials) %>
+            <% } %>
+            <form action=<%= formPostUrl %> method="POST">
+                <div class="form-group center">
+
+                    <% if (trips.length > 0) { %>
+                    <h5><b>from: <%=trips[0].FROM%> to: <%=trips[0].TO%> </b><br>Starting time: <%=trips[0].START_TIME%></h5>
+                    <% } else {%>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong>No trips to rate for now.
+                        </div>
+                    <% } %>
+
+                </div>
+
+                <div class="row">
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">1 star</label>
+                    </div>
+
+                </div>
+                <button class="btn-info btn right-aligned-btn" >End Trip</button>
+            </form>
+        </div>
+    </div>
+</div>
