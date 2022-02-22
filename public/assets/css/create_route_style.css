@@ -99,11 +99,14 @@ label {
 .table-cell {
     width: 50%;
 }
-.right-aligned-btn{
-    float: right;
-}
 
 .invisible-cell {
     display: none;
+}
+
+.center {
+    margin: auto;
+    width: auto;
+    padding: 10px;
 }
 

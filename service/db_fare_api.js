@@ -13,6 +13,19 @@ async  function getFare(src, des, route){
     };
     return (await database.execute(sql, binds, database.options)).rows;
 }
+
+async  function getSrcDesFare(src, des){
+    let sql = `
+        SELECT * 
+        FROM fare
+        WHERE ((l1_id = :src_id AND l2_id = :des_id) OR (l1_id = :des_id AND l2_id = :src_id)) 
+    `;
+    let binds = {
+        src_id : src,
+        des_id : des
+    };
+    return (await database.execute(sql, binds, database.options)).rows;
+}
 async function getRouteFare(route_id){
     let sql = `
         SELECT f.l1_id loc_1, l1.name loc_1_name, f.l2_id loc_2, l2.name loc_2_name, f.fare fare
@@ -60,6 +73,7 @@ async function updateFare(route_id, src_id, des_id, fare){
 
 module.exports = {
     getFare,
+    getSrcDesFare,
     getRouteFare,
     insertFare,
     updateFare

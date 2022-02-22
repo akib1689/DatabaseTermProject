@@ -22,7 +22,7 @@ search_box.addEventListener('input', () => {
             [loc_data] = [obj.data]
             for (key in obj.data) {
                 location = obj.data[key];
-                str += `<option class="location" value="${location.NAME}">`
+                str += `<option class="location" value="${location.NAME}"></option>`
             }
             list.innerHTML = str;
         }

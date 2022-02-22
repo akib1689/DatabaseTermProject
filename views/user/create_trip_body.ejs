@@ -1,48 +1,70 @@
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Select start location
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                         data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <ul class="list-group">
-                                <% for (let i = 0; i < loc_result.length; i++) { %>
-                                <li class="list-group-item"><%=loc_result[i].NAME%></li>
-                                <% } %>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<div class="row mt-5">
+    <div class="col-md-8 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i><%= title %></h1>
+            <div id="partial">
+                <% if (typeof (partials) != 'undefined') { %>
+                    <%- include(partials) %>
+                <% } %>
             </div>
-        </div>
-        <div class="col">
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Select destination Location
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                         data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <ul class="list-group">
-                                <% for (let i = 0; i < loc_result.length; i++) { %>
-                                <li class="list-group-item"><%=loc_result[i].NAME%></li>
-                                <% } %>
-                            </ul>
-                        </div>
+            <form action=<%= formPostUrl %> method="POST">
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="source">
+                            From
+                        </label>
+                        <input
+                                type="search"
+                                id="source"
+                                list="loc-option"
+                                name="source"
+                                class="form-control"
+                                placeholder="Enter name of starting location"
+                        />
                     </div>
+                    <div class="col-md-6 form-group">
+                        <label for="destination">To</label>
+                        <br>
+                        <input
+                                type="search"
+                                list="loc-option"
+                                name="destination"
+                                class="form-control"
+                                id="destination"
+                                placeholder="Enter name of the destination"/>
+
+                    </div>
+                    <datalist id="loc-option">
+                    </datalist>
                 </div>
-            </div>
+                <div class="col-md-6 form-group center">
+                    <label for="route">Route</label>
+                    <br>
+                    <input
+                            type="search"
+                            list="route-option"
+                            name="route"
+                            class="form-control"
+                            id="route"
+                            placeholder="Enter name of the route"/>
+                    <datalist id="route-option">
+                    </datalist>
+                </div>
+                <div class="col-md-6 form-group center">
+                    <label for="bus">Bus option</label>
+                    <br>
+                    <input
+                            type="search"
+                            list="bus-option"
+                            name="bus"
+                            class="form-control"
+                            id="bus"
+                            placeholder="Enter ID of the bus"/>
+                    <datalist id="bus-option">
+                    </datalist>
+                </div>
+                <button class="btn-info btn right-aligned-btn">Request Trip</button>
+            </form>
         </div>
     </div>
 </div>
