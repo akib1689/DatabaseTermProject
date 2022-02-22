@@ -6,9 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "git commit": "git add -A && git status && git commit -m",
-    "git push": "git push -u origin akib"
+    "dev": "nodemon index.js"
   },
   "author": "akibur rahman & zarin tasnim batool",
   "license": "ISC",
