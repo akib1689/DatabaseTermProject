@@ -51,9 +51,22 @@ async function insertDriver(p_id, licence){
     return (await database.execute(sql, binds,database.options));
 }
 
+async function insertDrives(bus_id, driver_id, operation_date){
+    let sql = `
+        INSERT INTO DRIVES(B_ID, DRIVER_ID, OPERATE_DATE) 
+        VALUES (:B_ID, :DRIVER_ID, TO_DATE(:OPERATE_DATE, 'YYYY-MM-DD'))
+    `;
+    let binds = {
+        B_ID : bus_id,
+        DRIVER_ID : driver_id,
+        OPERATE_DATE : operation_date
+    };
 
+    return (await database.execute(sql, binds,database.options));
+}
 
 module.exports = {
     insertDriver,
+    insertDrives,
     getBusByUser
 }

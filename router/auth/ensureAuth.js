@@ -30,7 +30,7 @@ function authenticateDriver (req, res, next){
         return next();
     }
 
-    req.flash('error_msg', 'The resource is only available to company admin');
+    req.flash('error_msg', 'The resource is only available to driver');
     res.redirect('/auth/login');
 }
 
