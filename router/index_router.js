@@ -22,6 +22,7 @@ router.get('/', async (req, res) =>{
         title: 'Bus Management System',
         header : 'home_header',
         body : 'home_body',
+        footer: 'footer',
         cssFileLink: '/assets/css/style.css',
         scripts: '/assets/js/main.js'
     });
