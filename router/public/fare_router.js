@@ -9,18 +9,23 @@ router.get('/',async (req, res) => {
     let src = req.query.src
     let des = req.query.des
     let route = req.query.route
-
-    const query_result = await db_fare_api.getFare(src,des,route)
+    let query_result
+    if (typeof (route) != 'undefined'){
+        query_result = await db_fare_api.getFare(src,des,route);
+    }else {
+        console.log('present')
+        query_result = await db_fare_api.getSrcDesFare(src, des);
+    }
 
 
     let result
     if (query_result.length >0){
         result = {
-            fare : query_result[0].FARE
+            data : query_result
         }
     }else {
         result ={
-            fare : -1
+            data : []
         }
     }
     

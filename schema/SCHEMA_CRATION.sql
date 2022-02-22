@@ -96,15 +96,17 @@ END;
 create table TRIP
 (
     ID           NUMBER(8) generated as identity,
-    START_LOC_ID NUMBER(8),
-    END_LOC_ID   NUMBER(8),
+    START_LOC_ID NUMBER(8) not null,
+    END_LOC_ID   NUMBER(8) not null,
     START_TIME   DATE not null,
-    END_TIME     DATE not null,
+    END_TIME     DATE ,
     B_ID         NUMBER(8),
     P_ID         NUMBER(8),
     primary key (ID),
     foreign key (B_ID) references BUS,
-    foreign key (P_ID) references PERSON
+    foreign key (P_ID) references PERSON,
+    foreign key (START_LOC_ID) references LOCATION,
+    foreign key (END_LOC_ID) references LOCATION
 );
 
 create table LOCATION
