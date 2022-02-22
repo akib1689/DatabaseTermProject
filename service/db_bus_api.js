@@ -68,11 +68,27 @@ async function insertBus(licence_plate, capacity, company_id){
 
     return (await database.execute(sql, binds,database.options));
 }
+async function updateBusStatus(bus_id, x_cor, y_cor){
+    let sql = `
+        UPDATE BUS_DYNAMIC_STATUS
+        SET X_COORDINATE = :X_COORDINATE,
+            Y_COORDINATE = :Y_COORDINATE
+        WHERE B_ID = :B_ID
+    `;
+    let binds = {
+        B_ID : bus_id,
+        X_COORDINATE: x_cor,
+        Y_COORDINATE: y_cor
+    };
+
+    return (await database.execute(sql, binds,database.options));
+}
 
 module.exports = {
     getBus,
     getBusDynamicStatus,
     getBusNotAssignedToday,
     getCompanyBus : getBusOwnedByCompany,
-    insertBus
+    insertBus,
+    updateBusStatus
 }

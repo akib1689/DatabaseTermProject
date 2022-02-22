@@ -25,6 +25,18 @@ async  function getBusDynamicStatus(id){
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
+async function getBusByUser(driver_id){
+    let sql = `
+        SELECT B_ID
+        FROM DRIVES
+        where DRIVER_ID = :DRIVER_ID AND TO_DATE(OPERATE_DATE, 'YYYY-MM-DD') = TO_DATE(SYSDATE, 'YYYY-MM-DD')
+    `;
+    let binds = {
+        DRIVER_ID : driver_id
+    };
+    return (await database.execute(sql, binds, database.options)).rows;
+}
+
 async function insertDriver(p_id, licence){
     let sql = `
        INSERT INTO DRIVER (P_ID, DRIVING_LICENCE_NUMBER)
@@ -39,17 +51,15 @@ async function insertDriver(p_id, licence){
     return (await database.execute(sql, binds,database.options));
 }
 
-async function insertRequest(bus_id, driver_id, operate_date, offset){
+async function insertDrives(bus_id, driver_id, operation_date){
     let sql = `
-       INSERT INTO REQUESTED (B_ID, DRIVER_ID, OPERATE_DATE)
-       VALUES(:B_ID, :DRIVER_ID, (TO_DATE(:OPERATE_DATE, 'YYYY-MM-DD')+ :OFFSET))
+        INSERT INTO DRIVES(B_ID, DRIVER_ID, OPERATE_DATE) 
+        VALUES (:B_ID, :DRIVER_ID, TO_DATE(:OPERATE_DATE, 'YYYY-MM-DD'))
     `;
-
     let binds = {
         B_ID : bus_id,
         DRIVER_ID : driver_id,
-        OPERATE_DATE: operate_date,
-        OFFSET: offset
+        OPERATE_DATE : operation_date
     };
 
     return (await database.execute(sql, binds,database.options));
@@ -57,5 +67,6 @@ async function insertRequest(bus_id, driver_id, operate_date, offset){
 
 module.exports = {
     insertDriver,
-    insertRequest
+    insertDrives,
+    getBusByUser
 }

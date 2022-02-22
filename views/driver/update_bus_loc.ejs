@@ -1,0 +1,63 @@
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>Update Bus Coordinate</h1>
+            <% if (typeof (partials) != 'undefined') { %>
+                <%- include(partials) %>
+            <% } %>
+            <form action=<%=formPostUrl%> method="POST">
+                <div class="form-group">
+                    <label for="bus_id">
+                        Bus ID
+                    </label>
+                    <input
+                            type="search"
+                            list="bus-search"
+                            id="bus_id"
+                            name="bus_id"
+                            class="form-control"
+                            placeholder="Enter the Bus ID"
+                    />
+                    <datalist id="bus-search">
+                        <% if (typeof buses != 'undefined') { %>
+                            <% buses.forEach(function (bus) { %>
+                            <option value=<%=bus.ID%>></option>
+                            <%});%>
+                        <%}%>
+                    </datalist>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="y-coordinate">
+                            Latitude
+                        </label>
+                        <input
+                                type="number"
+                                id="y-coordinate"
+                                name="y_coordinate"
+                                class="form-control"
+                                min="-90"
+                                max="90"
+                                placeholder="Enter latitude of location"
+                        />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="x-coordinate">
+                            Longitude
+                        </label>
+                        <input
+                                type="number"
+                                id="x-coordinate"
+                                name="x_coordinate"
+                                class="form-control"
+                                min="-180"
+                                max="180"
+                                placeholder="Enter longitude of location"
+                        />
+                    </div>
+                </div>
+                <button class="btn-info btn right-aligned-btn">Update Bus location</button>
+            </form>
+        </div>
+    </div>
+</div>
