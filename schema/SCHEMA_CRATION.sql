@@ -36,6 +36,7 @@ create table DRIVER
     P_ID                   NUMBER(8)    not null,
     DRIVING_LICENCE_NUMBER VARCHAR2(20) not null,
     RATING                 NUMBER(3, 2),
+    NUM_REVIEWS            NUMBER(8),
     primary key (P_ID),
     foreign key (P_ID) references PERSON
 );
@@ -90,24 +91,9 @@ BEGIN
     DELETE
     FROM requested
     where (B_ID=:new.B_ID OR Driver_ID=:new.Driver_ID)
-		AND	TO_CHAR(OPERATE_DATE, 'YYYY-MM-DD') = TO_CHAR(:new.OPERATE_DATE, 'YYYY-MM-DD');
+		AND
+		TO_CHAR(OPERATE_DATE, 'YYYY-MM-DD') = TO_CHAR(:new.OPERATE_DATE, 'YYYY-MM-DD');
 END;
-
-create table TRIP
-(
-    ID           NUMBER(8) generated as identity,
-    START_LOC_ID NUMBER(8) not null,
-    END_LOC_ID   NUMBER(8) not null,
-    START_TIME   DATE not null,
-    END_TIME     DATE ,
-    B_ID         NUMBER(8),
-    P_ID         NUMBER(8),
-    primary key (ID),
-    foreign key (B_ID) references BUS,
-    foreign key (P_ID) references PERSON,
-    foreign key (START_LOC_ID) references LOCATION,
-    foreign key (END_LOC_ID) references LOCATION
-);
 
 create table LOCATION
 (
@@ -164,6 +150,23 @@ create table REQUESTED
     primary key (B_ID, DRIVER_ID, OPERATE_DATE),
     foreign key (B_ID) references BUS,
     foreign key (DRIVER_ID) references DRIVER
+);
+
+create table TRIP
+(
+    ID           NUMBER(8) generated as identity,
+    START_LOC_ID NUMBER(8) not null,
+    END_LOC_ID   NUMBER(8) not null,
+    START_TIME   DATE      not null,
+    END_TIME     DATE,
+    B_ID         NUMBER(8),
+    P_ID         NUMBER(8),
+    RATING       NUMBER(1),
+    primary key (ID),
+    foreign key (B_ID) references BUS,
+    foreign key (P_ID) references PERSON,
+    foreign key (START_LOC_ID) references LOCATION,
+    foreign key (END_LOC_ID) references LOCATION
 );
 
 
