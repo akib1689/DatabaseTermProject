@@ -74,6 +74,7 @@ router.post('/create_trip', async (req, res,) => {
         // user in already in a bus theoretically
         req.flash('error_msg', 'Can\'t create trip now. You\'re already using a trip')
         res.redirect('/user');
+        return;
     }
     const insert_result = await db_trip_api.insertTrip(source, destination, bus, user.ID);
     if (insert_result && insert_result.rowsAffected > 0) {
